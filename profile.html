@@ -4,50 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile - Thuto Platform</title>
+    <link rel="stylesheet" href="style.css">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-light">
 
-
-<!-- Navbar with Logo -->
-
-
-
-
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand d-flex" href="/index.html">
-    <img src="assets/Logo-blue2.png" alt="Thuto Logo" width="120" height="120" class="d-inline-block align-text-top">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
-        <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
-        <li class="nav-item"><a class="btn btn-success text-white" href="signup.html">Get a Tutor</a></li>
-      </ul>
+<div class="container py-5">
+  <div class="card shadow p-4">
+    <div class="d-flex align-items-center mb-4">
+      <img src="assets/student-avatar.jpeg" class="rounded-circle me-3" width="100" height="100" alt="Student Avatar">
+      <div>
+        <h4 class="text-success">Bulela Gomoshe</h4>
+        <p class="mb-0">Matric Student | Cape Town</p>
+        <p class="text-muted small">Learning Goal: Improve Math & Science</p>
+      </div>
     </div>
+
+    <h5 class="text-success mb-3">📚 Booked Tutors</h5>
+    <div class="row" id="bookedTutorsContainer"></div>
   </div>
-</nav>
+</div>
 
+<script>
+  const bookedTutors = JSON.parse(localStorage.getItem("bookedTutors") || "[]");
+  const container = document.getElementById("bookedTutorsContainer");
 
-  <div class="container py-5">
-    <h2>Welcome, <span id="profile-username"></span>!</h2>
-    <p>Email: <span id="profile-email"></span></p>
+  if (bookedTutors.length) {
+    container.innerHTML = bookedTutors.map(t => `
+      <div class="col-md-4 mb-3">
+        <div class="card text-center shadow-sm p-3">
+          <img src="${t.avatar}" class="rounded-circle mb-3" width="100" height="100" alt="${t.name}">
+          <h6>${t.name}</h6>
+          <p>${t.subject} | ${t.availability}</p>
+          <span class="badge bg-success">Booked</span>
+        </div>
+      </div>
+    `).join('');
+  } else {
+    container.innerHTML = `<p class="text-muted">No tutors booked yet. Go to <a href="courses.html">Courses</a> to book.</p>`;
+  }
+</script>
 
-    <h4 class="mt-4">Completed Courses</h4>
-    <ul class="list-group" id="completed-courses">
-      <!-- JS will populate completed courses here -->
-    </ul>
-  </div>
-
-  <script src="js/app.js"></script>
 </body>
 </html>
-
-
