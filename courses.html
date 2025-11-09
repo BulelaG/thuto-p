@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses - Thuto Platform</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand d-flex" href="index.html">
+      <img src="assets/Logo-blue2.png" alt="Thuto Logo" width="120" height="120">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="courses.html">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+        <li class="nav-item"><a class="btn btn-success text-white" href="signup.html">Get a Tutor</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+</section>
+<!-- Book Tutors Section -->
+<section class="container booking py-5 bg-light rounded">
+  <h2 class="mb-4 text-center">Book a Tutor (Matric Test Case)</h2>
+  <form id="bookTutorForm" class="row g-3">
+    <div class="col-md-3">
+      <label for="location" class="form-label">Location / Institution</label>
+      <input type="text" class="form-control" id="location" placeholder="Enter location or school" value="Cape Town">
+    </div>
+    <div class="col-md-3">
+      <label for="subject" class="form-label">Subject</label>
+      <select class="form-select" id="subject">
+        <option selected>Select Subject</option>
+        <option value="Math">Math</option>
+        <option value="Science">Science</option>
+        <option value="English">English</option>
+        <option value="History">History</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="grade" class="form-label">Grade</label>
+      <select class="form-select" id="grade">
+        <option selected>12</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="availability" class="form-label">Availability</label>
+      <input type="date" class="form-control" id="availability">
+    </div>
+    <div class="col-12 text-center">
+      <button type="submit" class="btn btn-success">Search Tutors</button>
+    </div>
+  </form>
+
+  <div class="row mt-4" id="tutorResults">
+    <!-- JS will populate available tutors -->
+  </div>
+</section>
+
+<!-- Courses Section -->
+<section class="container py-5">
+  <h2 class="mb-4 text-center">Available Courses</h2>
+  <div class="row" id="courses-container">
+    <!-- JS will populate courses here -->
+  </div>
+
+<script>
+  const tutors = [
+    { name: "Thandi M.", subject: "Math", grade: "12", location: "Cape Town", availability: "2025-11-10", avatar: "assets/tutor 2-girl.jpeg" },
+    { name: "Sipho K.", subject: "Science", grade: "12", location: "Cape Town", availability: "2025-11-12", avatar: "assets/tutor-guy1.jpeg" },
+    { name: "Lerato P.", subject: "English", grade: "12", location: "Cape Town", availability: "2025-11-11", avatar: "assets/tutor1-girl.jpeg" },
+    { name: "Jason D.", subject: "Math", grade: "12", location: "Cape Town", availability: "2025-11-09", avatar: "assets/tutor1-guy.jpeg" },
+    { name: "Zanele T.", subject: "History", grade: "12", location: "Cape Town", availability: "2025-11-10", avatar: "assets/avatar.jpeg" }
+  ];
+
+  const bookTutorForm = document.getElementById("bookTutorForm");
+  const tutorResults = document.getElementById("tutorResults");
+
+  bookTutorForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const subject = document.getElementById("subject").value;
+    const grade = "12"; // Fixed for test case
+    const location = document.getElementById("location").value.toLowerCase();
+    const availability = document.getElementById("availability").value;
+
+    const filteredTutors = tutors.filter(t => 
+      (subject === "Select Subject" || t.subject === subject) &&
+      t.grade === grade &&
+      t.location.toLowerCase().includes(location) &&
+      (availability === "" || t.availability === availability)
+    );
+
+    tutorResults.innerHTML = filteredTutors.length
+      ? filteredTutors.map(t => `
+        <div class="col-md-4 mb-3">
+          <div class="card h-100 shadow-sm text-center p-3">
+            <img src="${t.avatar}" alt="${t.name}" class="rounded-circle mb-3" style="width:120px; height:120px; object-fit:cover;">
+            <h5 class="text-success">${t.name}</h5>
+            <p>Subject: ${t.subject}</p>
+            <p>Grade: ${t.grade}</p>
+            <p>Location: ${t.location}</p>
+            <p>Available: ${t.availability}</p>
+            <button class="btn btn-primary">Book Now</button>
+          </div>
+        </div>
+      `).join('')
+      : `<div class="col-12 text-center"><p class="text-danger">No tutors found for the selected criteria.</p></div>`;
+  });
+</script>

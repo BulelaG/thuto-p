@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thuto Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Hero and Carousel Styling */
+    .carousel-inner img {
+      object-fit: cover;
+      border-radius: 20px;
+      width: 600px;
+      height: 350px;
+    }
+    h3 {
+      margin: 40px 0 0;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+    a {
+      color: #42b983;
+    }
+    .hero-section {
+      padding: 60px 20px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+    .hero-section h1 {
+      font-size: 3rem;
+      color: #28a745;
+      font-weight: bold;
+    }
+    .hero-section h3 {
+      font-size: 2rem;
+      color: #ffc107;
+      font-weight: bold;
+    }
+    .hero-section h6 {
+      color: #6c757d;
+    }
+   
+
+    /* cardsl Styling */
+    
+
+    .card:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+
+
+
+  </style>
+</head>
+<body>
+
+<!-- Navbar with Logo -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand d-flex" href="#">
+    <img src="assets/Logo-blue2.png" alt="Thuto Logo" width="120" height="120" class="d-inline-block align-text-top">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+        <li class="nav-item"><a class="btn btn-success text-white" href="signup.html">Get a Tutor</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section">
+  <h1 class="display-1 fw-bold">Thuto Platform</h1>
+  <h5 class="display-4 fw-bold"><em>Up your grades with us</em></h5>
+  <h6 class="card-text">SA's leading Tutoring Platform</h6>
+  <br>
+  <a href="signup.html" class="btn btn-success btn-lg">Get a Tutor</a>
+</div>
+
+<!-- Promo Cards Section -->
+<div class="container mt-5">
+  <div class="row g-4 justify-content-center">
+
+    <!-- Card 1 -->
+    <div class="col-md-4">
+      <div class="card h-100 text-center shadow-sm">
+        <img src="assets/graphic1.jpg" class="card-img-top" alt="Online Tutoring" style="height:200px; object-fit:cover; border-radius:10px;">
+        <div class="card-body">
+          <h5 class="card-title text-success">Online Tutoring</h5>
+          <p class="card-text">Teaching turns today's learners into tomorrow's leaders. Prepare today for tomorrow.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-md-4">
+      <div class="card h-100 text-center shadow-sm">
+        <img src="assets/graphic2.jpg" class="card-img-top" alt="1 on 1 Tutoring" style="height:200px; object-fit:cover; border-radius:10px;">
+        <div class="card-body">
+          <h5 class="card-title text-success">1 on 1 Tutoring</h5>
+          <p class="card-text">Personalized attention ensures every student reaches their full potential.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-4">
+      <div class="card h-100 text-center shadow-sm">
+        <img src="assets/graphic3.png" class="card-img-top" alt="Peer to Peer Learning" style="height:200px; object-fit:cover; border-radius:10px;">
+        <div class="card-body">
+          <h5 class="card-title text-success">Peer to Peer Learning</h5>
+          <p class="card-text">"You haven't fully learnt anything until you can teach it." Excelling students help others.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
