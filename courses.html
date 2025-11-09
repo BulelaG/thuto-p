@@ -76,13 +76,14 @@
     <!-- JS will populate courses here -->
   </div>
 
+  
 <script>
   const tutors = [
-    { name: "Thandi M.", subject: "Math", grade: "12", location: "Cape Town", availability: "2025-11-10", avatar: "assets/tutor 2-girl.jpeg" },
-    { name: "Sipho K.", subject: "Science", grade: "12", location: "Cape Town", availability: "2025-11-12", avatar: "assets/tutor-guy1.jpeg" },
-    { name: "Lerato P.", subject: "English", grade: "12", location: "Cape Town", availability: "2025-11-11", avatar: "assets/tutor1-girl.jpeg" },
-    { name: "Jason D.", subject: "Math", grade: "12", location: "Cape Town", availability: "2025-11-09", avatar: "assets/tutor1-guy.jpeg" },
-    { name: "Zanele T.", subject: "History", grade: "12", location: "Cape Town", availability: "2025-11-10", avatar: "assets/avatar.jpeg" }
+    { id: 1, name: "Thandi M.", subject: "Math", grade: "12", location: "Cape Town", availability: "2025-11-10", avatar: "assets/tutor2-girl.jpeg" },
+    { id: 2, name: "Sipho K.", subject: "Science", grade: "12", location: "Cape Town", availability: "2025-11-12", avatar: "assets/tutor-guy1.jpeg" },
+    { id: 3, name: "Lerato P.", subject: "English", grade: "12", location: "Cape Town", availability: "2025-11-11", avatar: "assets/tutor1-girl.jpeg" },
+    { id: 4, name: "Jason D.", subject: "Math", grade: "12", location: "Cape Town", availability: "2025-11-09", avatar: "assets/tutor1-guy.jpeg" },
+    { id: 5, name: "Zanele T.", subject: "History", grade: "12", location: "Cape Town", availability: "2025-11-10", avatar: "assets/avatar.jpeg" }
   ];
 
   const bookTutorForm = document.getElementById("bookTutorForm");
@@ -92,13 +93,11 @@
     e.preventDefault();
 
     const subject = document.getElementById("subject").value;
-    const grade = "12"; // Fixed for test case
     const location = document.getElementById("location").value.toLowerCase();
     const availability = document.getElementById("availability").value;
 
     const filteredTutors = tutors.filter(t => 
       (subject === "Select Subject" || t.subject === subject) &&
-      t.grade === grade &&
       t.location.toLowerCase().includes(location) &&
       (availability === "" || t.availability === availability)
     );
@@ -111,12 +110,30 @@
             <h5 class="text-success">${t.name}</h5>
             <p>Subject: ${t.subject}</p>
             <p>Grade: ${t.grade}</p>
-            <p>Location: ${t.location}</p>
             <p>Available: ${t.availability}</p>
-            <button class="btn btn-primary">Book Now</button>
+            <button class="btn btn-primary" onclick="bookTutor(${t.id})">Book Now</button>
           </div>
         </div>
       `).join('')
       : `<div class="col-12 text-center"><p class="text-danger">No tutors found for the selected criteria.</p></div>`;
   });
+
+  // Simulate booking confirmation
+  function bookTutor(id) {
+    const tutor = tutors.find(t => t.id === id);
+    if (!tutor) return;
+
+    const confirmBooking = confirm(`Confirm booking with ${tutor.name} on ${tutor.availability}?`);
+    if (confirmBooking) {
+      // Simulate blockchain transaction delay
+      alert("Booking in progress (simulated blockchain transaction)...");
+      setTimeout(() => {
+        alert(`Booking confirmed with ${tutor.name}! 🎉`);
+        // Save to localStorage for profile
+        const bookedTutors = JSON.parse(localStorage.getItem("bookedTutors") || "[]");
+        bookedTutors.push(tutor);
+        localStorage.setItem("bookedTutors", JSON.stringify(bookedTutors));
+      }, 1000);
+    }
+  }
 </script>
